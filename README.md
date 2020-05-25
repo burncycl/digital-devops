@@ -77,14 +77,14 @@ Push button magic with
 cd ./base && make env
 ```
 
-## AWS Terraform S3 Remote State Backend ([./tf-s3-remote-state-backend](./tf-s3-remote-state-backend))
+## Deploy S3 Remote State Backend ([./tf-s3-remote-state-backend](./tf-s3-remote-state-backend))
 Reference: https://github.com/nozaq/terraform-aws-remote-state-s3-backend
 
 Cloned and modified the above project.
 
 All projects are defaulted to us-west-2.
 
-### Create AWS Terraform S3 Remote State Backend
+### Create S3 Remote State Backend
 
 Push button magic with
 ```
@@ -114,7 +114,9 @@ Run
 ./update_rstate_backend.sh
 ```
 
-## Deploy Automation role to be used by all subsequent automation ([./tf-iam-automation-role](./tf-iam-automation-role))
+## Deploy Automation Role ([./tf-iam-automation-role](./tf-iam-automation-role))
+
+To be used by all subsequent automation
 
 In an effort to adhear to best-practices, henceforth we'll use a role assumption for all subsequent automation.
 
@@ -123,7 +125,7 @@ Push button magic with
 cd ./tf-iam-automation-role && make role
 ```
 
-All subsequent automation can utilize the following role assumption in the provider block.
+All subsequent automation can utilize the following role assumption in the `provider` block.
 ```
 provider "aws" {
   region                        = var.region

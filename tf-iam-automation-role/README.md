@@ -4,6 +4,8 @@ Deploys IAM role for Users who need to perform automation (e.g. Terraform) to as
 
 In an effort to adhear to best-practices, henceforth we'll use a role assumption for all subsequent automation.
 
+
+## Create Role
 Push button magic with
 ```
 make role
@@ -43,3 +45,18 @@ Due to time constraints, I did not work to tighten permissions on KMS or EKS.
 Reference: https://docs.aws.amazon.com/eks/latest/userguide/security_iam_id-based-policy-examples.html
 
 Experimenting with the following policy generator might help: https://awspolicygen.s3.amazonaws.com/policygen.html
+
+
+## Destroy Role 
+Destroy requires terraform.tfstate
+
+Destroy
+```
+make destroy
+```
+
+Destroy without prompting. Warning: Very impactful!
+```
+make destroy_role
+```
+

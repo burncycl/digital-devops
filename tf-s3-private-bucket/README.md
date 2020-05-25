@@ -24,4 +24,4 @@ make destroy
 Destroy without prompting. Warning: Very impactful!
 ```
 make destroy_bucket
-
+```
