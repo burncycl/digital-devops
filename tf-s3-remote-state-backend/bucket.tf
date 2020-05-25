@@ -13,6 +13,12 @@ resource "aws_kms_key" "this" {
   tags = var.tags
 }
 
+# Added Alias for easier identification # 2020/05 Michael Grate
+resource "aws_kms_alias" "alias" {
+  name          = var.kms_alias_key
+  target_key_id = aws_kms_key.this.key_id
+}
+
 resource "aws_kms_key" "replica" {
   provider = aws.replica
 

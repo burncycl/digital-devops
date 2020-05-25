@@ -105,3 +105,18 @@ variable "dynamodb_table_billing_mode" {
   description = "Controls how you are charged for read and write throughput and how you manage capacity."
   default     = "PAY_PER_REQUEST"
 }
+
+# Static region assignment # 2020/05 Michael Grate
+variable "region" {
+  default = "us-west-2"
+}
+
+variable "replica_region" {
+  default = "us-east-1"
+}
+
+variable "kms_alias_key" {
+  default = "alias/digital-devops/remote-state"
+}
+
+

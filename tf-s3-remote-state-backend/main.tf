@@ -1,5 +1,9 @@
-provider "aws" {}
+provider "aws" {
+  version = ">= 2.38.0"
+  region  = var.region
+}
 
 provider "aws" {
-  alias = "replica"
+  region = var.replica_region
+  alias  = "replica"
 }
