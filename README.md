@@ -92,8 +92,10 @@ cd ./tf-remote-state-s3-backend && make bucket
 Create backup for good measure, since this doesn't have a remote state of it's own.
 ```
 cd ./tf-remote-state-s3-backend && make backup
+```
 
 ### Update Remote State and KMS Key ID for remote_state.tf
+
 `update_rstate_backend.sh` will recursively update remote_state.tf with new S3 Bucket name and KMS Key ID.
 
 These values can be looked up in the AWS Console:
