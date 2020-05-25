@@ -178,3 +178,4 @@ Push button magic with
 ```
 cd ./tf-eks-cluster && make cluster finalize
 ```
+Pay attention to the ELB address output. You'll need this for the CNAME record for DNS. Not using Route53 for my DNS so this is a manual process.
