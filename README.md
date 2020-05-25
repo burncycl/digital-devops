@@ -73,3 +73,22 @@ Push button magic with
 cd ./base && make env
 ```
 
+## AWS Terraform S3 Remote State Backend (./tf-s3-remote-state-backend)
+Reference: https://github.com/nozaq/terraform-aws-remote-state-s3-backend
+
+Cloned and modified the above project.
+
+All projects are defaulted to us-west-2.
+
+### Create AWS Terraform S3 Remote State Backend
+
+Push button magic with
+```
+cd ./tf-remote-state-s3-backend && make bucket
+```
+
+Create backup for good measure, since this doesn't have a remote state of it's own.
+```
+cd ./tf-remote-state-s3-backend && make backup
+```
+
