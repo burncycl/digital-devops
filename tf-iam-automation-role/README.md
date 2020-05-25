@@ -42,4 +42,4 @@ Due to time constraints, I did not work to tighten permissions on KMS or EKS.
 
 Reference: https://docs.aws.amazon.com/eks/latest/userguide/security_iam_id-based-policy-examples.html
 
-
+Experimenting with the following policy generator might help: https://awspolicygen.s3.amazonaws.com/policygen.html
