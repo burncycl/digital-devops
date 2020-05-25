@@ -173,3 +173,8 @@ Push button magic with
 cd ./tf-s3-private-bucket && make bucket
 ```
 
+## Deploy EKS Cluster
+Push button magic with
+```
+cd ./tf-eks-cluster && make cluster finalize
+```
