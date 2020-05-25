@@ -1,5 +1,8 @@
 ### 2020/05 Michael Grate
 
+If EKS is online, application can be reached at http://devops.fyzix.net
+
+Likely offline for cost saving purposes.
 
 ## Deploy Dockerized Flask Application with Helm Charts
 Deploy Flask App which displays random Image from S3 bucket.

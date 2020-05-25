@@ -36,12 +36,13 @@ make destroy_cluster
 
 ### Troubleshooting
 
-#### Problem
+#### Authorization issues
+##### Problem
 ```
 error: You must be logged in to the server (Unauthorized)
 ```
 
-#### Solution
+##### Solution
 
 Reference: 
 - https://aws.amazon.com/premiumsupport/knowledge-center/eks-api-server-unauthorized-error/
@@ -50,4 +51,17 @@ Ended up needing to use the automation role which has kms policy.
 ```
 aws eks --region us-west-2 update-kubeconfig --name digital-devops-eks-cluster --role-arn arn:aws:iam::351484734788:role/automation-role
 ```
+
+#### Terraform doesn't destroy
+
+##### Problem
+Terraform timesout trying to delete resources (e.g. subnets)
+
+##### Solution
+The ENI's struggle to detach + delete. Thus, you'll need to manually:
+- Delete the ELB. 
+- Delete the ENI's
+- To keep things moving along, manually delete the VPC.
+
+Terraform should be able to delete the cluster after this effort.
 
