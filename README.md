@@ -35,3 +35,12 @@ git config --global user.name "username"
 
 Important: Be sure to update `./base/group_vars/all.yml` user variable to match your username where automation will be ran.
 
+### Create AWS Free Tier Account
+
+Create free tier account here:
+- https://aws.amazon.com/free/
+
+Login to root account, browse to IAM, create a non-root `automation` user account.  Give the user ONLY Programmatic/API access and the following Permissions:
+- AdministratorAccess
+
+Dont' worry, we'll remove this permission/policy later.
