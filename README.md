@@ -2,9 +2,9 @@
 
 Automation for digital-devops coding demonstration.
 
-If EKS is online, application can be reached at http://devops.fyzix.net
+If EKS Cluster is online, application can be reached at http://devops.fyzix.net
 
-Likely offline for cost saving purposes.
+_Likely offline for cost saving purposes._
 
 Requirements:
 * Deploy EKS Cluster.
