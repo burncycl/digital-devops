@@ -14,6 +14,9 @@ make cluster finalize
 ```
 To just address infrastructure changes, use only `make cluster` target.
 
+Pay attention to the ELB address output. You'll need this for the CNAME record for DNS. Not using Route53 for
+my DNS so this is a manual process.
+
 
 ### Troubleshooting
 
