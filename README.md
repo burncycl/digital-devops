@@ -118,7 +118,7 @@ In an effort to adhear to best-practices, henceforth we'll use a role assumption
 
 Push button magic with
 ```
-cd ./tf-automation-iam-role && make role
+cd ./tf-iam-automation-role && make role
 ```
 
 All subsequent automation can utilize the following role assumption in the provider block.
@@ -152,5 +152,22 @@ variable "deploy_role" {
 Remote state files should include the following henceforth
 ```
     role_arn = "arn:aws:iam::351484734788:role/automation-role"
+```
+
+## Deploy Automation user policy (./tf-iam-automation-user-policy)
+
+Automation user policy. This helps to facilitate least privledge. Henceforth, we'll use role assumption for automation.
+```
+cd ./tf-iam-automation-user-policy &&  make policy
+```
+
+At this point, Remove the `AdministratorAccess` permission from the `automation` user. 
+
+
+## Deploy S3 bucket with non-public permissions
+
+Push button magic with
+```
+cd ./tf-s3-private-bucket && make bucket
 ```
 
