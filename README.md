@@ -1,94 +1,13 @@
-### 2020/05 Michael Grate
+### 2020/05 Michael Grate 
 
-Automation for digital-devops coding demonstration.
+References:
+- https://www.terraform.io/docs/providers/aws/r/s3_bucket.html
+- https://www.terraform.io/docs/providers/aws/r/s3_bucket_public_access_block.html
 
-Requirements:
-* Deploy EKS Cluster.
-* Deploy something to EKS Cluster
-  - Deploy own Dockerized application to EKS Cluster.
-  - Grab Helm Chart and deploy it.
-  - Something else even cooler?
-* Create S3 bucket that is not publicly accessible and has encryption at rest enabled.
-* Automate tests to verify S3 bucket exists and has correct configuration.
+Creates an S3 bucket with encryption at rest enabled utilizing KMS. 
 
-## Manual Prerequisites
-
-Ubuntu Prerequisites (or as root)
+Push button magic with 
 ```
-sudo apt-add-repository universe
-sudo apt update
-sudo apt install -y git ansible make
-```
-
-Manually, make sure your user is a sudoer
-
-/etc/sudoers
-```
-username ALL=(ALL:ALL) ALL
-```
-
-Configure Git as user.
-```
-git config --global user.email "your@email.com"
-git config --global user.name "username"
-```
-
-Important: Be sure to update `./base/group_vars/all.yml` user variable to match your username where automation will be ran.
-
-### Create AWS Free Tier Account
-
-Create free tier account here:
-- https://aws.amazon.com/free/
-
-Login to root account, browse to IAM, create a non-root `automation` user account.  Give the user ONLY Programmatic/API access and the following Permissions:
-- AdministratorAccess
-
-Dont' worry, we'll remove this permission/policy later.
-
-### Base (./base)
-Deploys base dev environment from a virgin system.
-
-#### Import AWS user secrets into Ansible automation
-
-Take Access key ID & Secret access key and input them into ansible-vault secrets.yml
-
-If file already exists
-```
-ansible-vault edit ./base/secrets.yml
-```
-
-If doesn't exist, copy from example, edit and update the variables, then encrypt.
-```
-cp secrets.yml.example secrets.yml
-vi secrets.yml
-ansible-vault encrypt secrets.yml
-```
-
-Support also exists for GCP Cloud Credentials, although not enabled.
-
-#### Deploy local dev environment
-
-Push button magic with
-```
-cd ./base && make env
-```
-
-## AWS Terraform S3 Remote State Backend (./tf-s3-remote-state-backend)
-Reference: https://github.com/nozaq/terraform-aws-remote-state-s3-backend
-
-Cloned and modified the above project.
-
-All projects are defaulted to us-west-2.
-
-### Create AWS Terraform S3 Remote State Backend
-
-Push button magic with
-```
-cd ./tf-remote-state-s3-backend && make bucket
-```
-
-Create backup for good measure, since this doesn't have a remote state of it's own.
-```
-cd ./tf-remote-state-s3-backend && make backup
+make bucket 
 ```
 
