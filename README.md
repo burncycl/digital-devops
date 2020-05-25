@@ -156,7 +156,7 @@ Remote state files should include the following henceforth
     role_arn = "arn:aws:iam::351484734788:role/automation-role"
 ```
 
-## Deploy Automation user policy ([././tf-iam-automation-user-policy](././tf-iam-automation-user-policy))
+## Deploy Automation user policy ([./tf-iam-automation-user-policy](./tf-iam-automation-user-policy))
 
 Automation user policy. This helps to facilitate least privledge. Henceforth, we'll use role assumption for automation.
 ```
