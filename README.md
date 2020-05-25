@@ -11,7 +11,7 @@ Requirements:
 * Create S3 bucket that is not publicly accessible and has encryption at rest enabled.
 * Automate tests to verify S3 bucket exists and has correct configuration.
 
-[Message to the audience](MESSAGE.md)
+[Message to the Audience](MESSAGE.md)
 
 ## Manual Prerequisites
 
@@ -49,7 +49,7 @@ Dont' worry, we'll remove this permission/policy later.
 
 IMPORTANT TO NOTE: Creating a EKS cluster will incure charges at $0.10 per hour. Be sure to tear down the environment when you're done.
 
-### Base (./base)
+### Base ([./base](./base))
 Deploys base dev environment from a virgin system.
 
 #### Import AWS user secrets into Ansible automation
@@ -77,7 +77,7 @@ Push button magic with
 cd ./base && make env
 ```
 
-## AWS Terraform S3 Remote State Backend (./tf-s3-remote-state-backend)
+## AWS Terraform S3 Remote State Backend ([./tf-s3-remote-state-backend](./tf-s3-remote-state-backend))
 Reference: https://github.com/nozaq/terraform-aws-remote-state-s3-backend
 
 Cloned and modified the above project.
@@ -114,7 +114,7 @@ Run
 ./update_rstate_backend.sh
 ```
 
-## Deploy Automation role to be used by all subsequent automation (./tf-iam-automation-role)
+## Deploy Automation role to be used by all subsequent automation ([./tf-iam-automation-role](./tf-iam-automation-role))
 
 In an effort to adhear to best-practices, henceforth we'll use a role assumption for all subsequent automation.
 
@@ -156,7 +156,7 @@ Remote state files should include the following henceforth
     role_arn = "arn:aws:iam::351484734788:role/automation-role"
 ```
 
-## Deploy Automation user policy (./tf-iam-automation-user-policy)
+## Deploy Automation user policy ([././tf-iam-automation-user-policy](././tf-iam-automation-user-policy))
 
 Automation user policy. This helps to facilitate least privledge. Henceforth, we'll use role assumption for automation.
 ```
@@ -166,7 +166,7 @@ cd ./tf-iam-automation-user-policy &&  make policy
 At this point, Remove the `AdministratorAccess` permission from the `automation` user. 
 
 
-## Deploy S3 bucket with non-public permissions (./tf-s3-private-bucket)
+## Deploy S3 bucket with non-public permissions ([./tf-s3-private-bucket](./tf-s3-private-bucket))
 
 Push button magic with
 ```
