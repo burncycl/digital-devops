@@ -1,0 +1,11 @@
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                   "arn:aws:iam::accountid:role/role_in_another_account",
+                    "arn:aws:iam::accountid:role/role_in_another_account"
+           ]
+        }
+

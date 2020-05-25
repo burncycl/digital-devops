@@ -1,0 +1,100 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": ["arn:aws:iam::351484734788:role/automation-role"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:DescribeKey",
+                "kms:GenerateDataKey",
+                "kms:Decrypt"
+            ],
+        "Resource": [
+            "arn:aws:kms:*:351484734788:key/*"
+        ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::tf-remote-state20200522220753917200000002"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::tf-remote-state20200522220753917200000002/*"
+            ]
+        },	
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetAccessKeyLastUsed",
+                "iam:GetAccountAuthorizationDetails",
+                "iam:GetAccountPasswordPolicy",
+                "iam:GetAccountSummary",
+                "iam:GetContextKeysForCustomPolicy",
+                "iam:GetContextKeysForPrincipalPolicy",
+                "iam:GetCredentialReport",
+                "iam:GetGroupPolicy",
+                "iam:GetInstanceProfile",
+                "iam:GetLoginProfile",
+                "iam:GetOpenIDConnectProvider",
+                "iam:GetOrganizationsAccessReport",
+                "iam:GetPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetRole",
+                "iam:GetRolePolicy",
+                "iam:GetSAMLProvider",
+                "iam:GetSSHPublicKey",
+                "iam:GetServerCertificate",
+                "iam:GetServiceLastAccessedDetails",
+                "iam:GetServiceLastAccessedDetailsWithEntities",
+                "iam:GetServiceLinkedRoleDeletionStatus",
+                "iam:GetUser",
+                "iam:GetUserPolicy",
+                "iam:ListAccessKeys",
+                "iam:ListAccountAliases",
+                "iam:ListAttachedGroupPolicies",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListAttachedUserPolicies",
+                "iam:ListEntitiesForPolicy",
+                "iam:ListGroupPolicies",
+                "iam:ListGroups",
+                "iam:ListGroupsForUser",
+                "iam:ListInstanceProfiles",
+                "iam:ListInstanceProfilesForRole",
+                "iam:ListMFADevices"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:DescribeCluster"
+            ],
+            "Resource": "arn:aws:eks:us-west-2:351484734788:cluster/digital-devops-eks-cluster"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:*"
+            ],
+            "Resource": "arn:aws:ecr:us-west-2:351484734788:repository/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        }
+	
+    ]
+}
