@@ -166,14 +166,14 @@ cd ./tf-iam-automation-user-policy &&  make policy
 At this point, Remove the `AdministratorAccess` permission from the `automation` user. 
 
 
-## Deploy S3 bucket with non-public permissions
+## Deploy S3 bucket with non-public permissions (./tf-s3-private-bucket)
 
 Push button magic with
 ```
 cd ./tf-s3-private-bucket && make bucket
 ```
 
-## Deploy EKS Cluster
+## Deploy EKS Cluster (./tf-eks-cluster)
 Push button magic with
 ```
 cd ./tf-eks-cluster && make cluster finalize
