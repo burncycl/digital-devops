@@ -44,3 +44,32 @@ Login to root account, browse to IAM, create a non-root `automation` user accoun
 - AdministratorAccess
 
 Dont' worry, we'll remove this permission/policy later.
+
+### Base (./base)
+Deploys base dev environment from a virgin system.
+
+#### Import AWS user secrets into Ansible automation
+
+Take Access key ID & Secret access key and input them into ansible-vault secrets.yml
+
+If file already exists
+```
+ansible-vault edit ./base/secrets.yml
+```
+
+If doesn't exist, copy from example, edit and update the variables, then encrypt.
+```
+cp secrets.yml.example secrets.yml
+vi secrets.yml
+ansible-vault encrypt secrets.yml
+```
+
+Support also exists for GCP Cloud Credentials, although not enabled.
+
+#### Deploy local dev environment
+
+Push button magic with
+```
+cd ./base && make env
+```
+
