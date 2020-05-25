@@ -8,6 +8,8 @@ References:
 
 Modified the original source code for readability.
 
+## Create Cluster
+
 Push button magic with
 ```
 make cluster finalize
@@ -16,6 +18,20 @@ To just address infrastructure changes, use only `make cluster` target.
 
 Pay attention to the ELB address output. You'll need this for the CNAME record for DNS. Not using Route53 for
 my DNS so this is a manual process.
+
+
+## Destroy Cluster
+Destroy requires terraform.tfstate
+
+Destroy
+```
+make destroy
+```
+
+Destroy without prompting. Warning: Very impactful!
+```
+make destroy_cluster
+```
 
 
 ### Troubleshooting
