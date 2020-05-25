@@ -1,0 +1,9 @@
+image:
+  repository: 351484734788.dkr.ecr.us-west-2.amazonaws.com/digital-devops
+  tag: v2
+ingress:
+  enabled: true
+  hosts:
+    - host: devops.fyzix.net
+      paths:
+        - "/"

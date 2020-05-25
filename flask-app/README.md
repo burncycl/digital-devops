@@ -10,6 +10,11 @@ mkdir -p ./helm && cd ./helm
 helm create flask-app
 ```
 
+## Upload images to digital-devops-images bucket
+I manually did this, and kept the images out of source control. 
+
+Region properties set to: `One Zone-IA` (Long-lived, infrequently accessed, non-critical data) for cost purposes.
+
 ## Manually Deploy Application
 
 Deploy application with Helm to EKS Cluster
