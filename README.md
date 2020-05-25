@@ -11,6 +11,8 @@ Requirements:
 * Create S3 bucket that is not publicly accessible and has encryption at rest enabled.
 * Automate tests to verify S3 bucket exists and has correct configuration.
 
+* [Message to the audience](MESSAGE.md)
+
 ## Manual Prerequisites
 
 Ubuntu Prerequisites (or as root)
