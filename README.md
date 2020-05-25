@@ -11,3 +11,27 @@ Requirements:
 * Create S3 bucket that is not publicly accessible and has encryption at rest enabled.
 * Automate tests to verify S3 bucket exists and has correct configuration.
 
+## Manual Prerequisites
+
+Ubuntu Prerequisites (or as root)
+```
+sudo apt-add-repository universe
+sudo apt update
+sudo apt install -y git ansible make
+```
+
+Manually, make sure your user is a sudoer
+
+/etc/sudoers
+```
+username ALL=(ALL:ALL) ALL
+```
+
+Configure Git as user.
+```
+git config --global user.email "your@email.com"
+git config --global user.name "username"
+```
+
+Important: Be sure to update `./base/group_vars/all.yml` user variable to match your username where automation will be ran.
+
