@@ -1,0 +1,23 @@
+---
+
+- name: Fetch Helm Tarball 
+  tags: helm 
+  get_url:
+      url: '{{ helm_tarball_url }}'
+      dest: '{{ tmp_dir }}/{{ helm_tarball }}'
+      mode: 0755
+
+- name: Unarchive Helm Tarball 
+  tags: helm
+  unarchive:
+    src: '{{ tmp_dir }}/{{ helm_tarball }}' 
+    dest: '{{ tmp_dir }}'
+
+- name: Copy helm binary to '{{ usr_bin }}'
+  tags: helm
+  copy:
+    src: '{{ tmp_dir }}/{{ helm_arch }}/helm' 
+    dest: '{{ usr_bin }}' 
+    owner: root 
+    group: root 
+    mode: 0755

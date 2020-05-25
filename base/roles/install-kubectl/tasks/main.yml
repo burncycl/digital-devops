@@ -1,0 +1,38 @@
+---
+
+- name: Install Kubectl dependencies 
+  tags: kubectl
+  apt:
+    name: '{{ packages }}'
+    state: latest
+    update_cache: yes
+  vars:
+   packages:
+    - apt-transport-https 
+
+- name: Add an Apt signing key for Kubectl
+  tags: kubectl
+  apt_key:
+    url: '{{ kubernetes_apt_key_url }}'
+    state: present 
+
+- name: Add kubernetes source list 
+  tags: kubectl
+  apt_repository:
+    #repo: 'deb http://apt.kubernetes.io/ kubernetes-{{ ansible_distribution_release }} main'
+    repo: 'deb http://apt.kubernetes.io/ kubernetes-{{ linux_distribution_release }} main'
+    state: present
+    filename: 'kubernetes'
+
+- name: Install Kubectl
+  tags: kubectl
+  apt:
+    name: '{{ packages }}'
+    state: latest
+    update_cache: yes
+  vars:
+   packages:
+    - kubectl 
+
+
+- include: config.yml 

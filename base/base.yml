@@ -8,3 +8,5 @@
   roles:
    - software-tools
    - cloud-credentials 
+   - install-kubectl 
+   - install-helm

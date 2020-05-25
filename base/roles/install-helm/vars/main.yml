@@ -1,0 +1,10 @@
+---
+
+tmp_dir: /tmp
+usr_bin: /usr/bin
+
+# Helm tarball
+helm_version: 3.2.1 
+helm_arch: linux-amd64
+helm_tarball: 'helm-v{{ helm_version }}-{{ helm_arch }}.tar.gz'
+helm_tarball_url: 'https://get.helm.sh/{{ helm_tarball }}'

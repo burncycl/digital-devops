@@ -1,0 +1,5 @@
+---
+
+kubernetes_apt_key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+kube_config_dir: /home/{{user}}/.kube
+linux_distribution_release: xenial

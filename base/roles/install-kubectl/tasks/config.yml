@@ -1,0 +1,47 @@
+---
+
+- name: Create ~/.kube directory
+  tags: kubectl, kube_config 
+  file:
+    path: '{{ kube_config_dir }}'
+    state: directory
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: 0700
+
+# Commented out, because we're going to use the kube config output from terraform # 2020/05 Michael Grate 
+#- name: Copy kube config
+#  tags: kubectl, kube_config 
+#  copy:
+#    src: 'files/config'
+#    dest: '{{ kube_config_dir }}'
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0600
+
+- name: Install bash-completion for kubectl 
+  tags: kubectl, kube_config, kube_complete
+  apt:
+    name: '{{ packages }}'
+    state: latest
+    update_cache: yes
+  vars:
+   packages:
+    - bash-completion 
+
+- name: Read ~/.bashrc 
+  tags: kubectl, kube_config, kube_complete, kube_alias
+  shell: 'cat /home/{{ user }}/.bashrc'
+  register: bashrc 
+
+- name: Alias kubectl to kc
+  tags: kubectl, kube_config, kube_alias
+  shell: echo "alias kc='kubectl'" >> /home/{{ user }}/.bashrc
+  when: bashrc.stdout.find('alias kc') == -1
+
+- name: Add kubectl completion to ~/.bashrc 
+  tags: kubectl, kube_config, kube_complete
+  shell: |
+      echo "source <(kubectl completion bash)" >> /home/{{ user }}/.bashrc
+  when: bashrc.stdout.find('kubectl completion bash') == -1
+
