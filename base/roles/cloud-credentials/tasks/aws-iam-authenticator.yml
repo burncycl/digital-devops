@@ -1,0 +1,9 @@
+---
+
+- name: Fetch aws-iam-authenticator 
+  tags: iam_auth 
+  get_url:
+      url: '{{ aws_iam_authenticator_url }}'
+      dest: '{{ usr_bin }}'
+      mode: 0755
+

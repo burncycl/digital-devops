@@ -1,0 +1,78 @@
+---
+
+# AWS Cloud credentials automation. Assumes you have updated secrets.yml with your AWS Key ID and AWS Secret 
+- name: Create ~/.aws directory
+  tags: aws, credentials, secrets
+  file:
+    path: '{{ aws_creds_dir }}'
+    state: directory
+    owner: '{{ user }}' 
+    group: '{{ user }}' 
+    mode: 0700 
+
+- name: Template aws config 
+  tags: aws, credentials, secrets 
+  template:
+    src: 'templates/config.j2'
+    dest: '{{ aws_creds_dir }}/config' 
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: 0600
+
+- name:  Copy aws credentials 
+  tags: aws, credentials, secrets
+  copy:
+    content: '{{ aws_credentials }}'
+    dest: '{{ aws_creds_dir }}/credentials'
+    owner: '{{ user }}' 
+    group: '{{ user }}' 
+    mode: 0600
+
+- include: aws-iam-authenticator.yml
+
+# GCloud credentials automation. Assumes you have updated secrets.yml with your AWS Key ID and AWS Secret
+#- name: Create .config directory
+#  tags: gcloud, credentials, secrets
+#  file:
+#    path: '{{ gcloud_config_dir }}'
+#    state: directory
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0700
+#
+#- name: Create gcloud directory
+#  tags: gcloud, credentials, secrets
+#  file:
+#    path: '{{ gcloud_dir }}'
+#    state: directory
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0700
+#
+#- name: Copy gcloud credentials
+#  tags: gcloud, credentials, secrets
+#  copy:
+#    content: '{{ gcloud_credentials }}'
+#    dest: '{{ gcloud_dir }}/{{ user }}.json'
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0600
+#
+#- name: Template create gce.ini config
+#  tags: gcloud, credentials, secrets
+#  template:
+#    src: 'templates/gce.ini.j2'
+#    dest: '{{ gcloud_gce_ini_filepath }}'
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0600
+#
+#- name: Template create config_default
+#  tags: gcloud, credentials, secrets
+#  template:
+#    src: 'templates/config_default.j2'
+#    dest: '{{ gcloud_config_default_filepath }}'
+#    owner: '{{ user }}'
+#    group: '{{ user }}'
+#    mode: 0664
+

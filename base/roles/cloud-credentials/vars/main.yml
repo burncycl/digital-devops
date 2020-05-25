@@ -1,0 +1,6 @@
+---
+
+usr_bin: /usr/bin
+
+# Reference: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
+aws_iam_authenticator_url: https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator

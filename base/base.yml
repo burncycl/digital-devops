@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  vars_files:
+   - secrets.yml # Contains private ssh keys for things like qps script.
+  roles:
+   - software-tools
+   - cloud-credentials 

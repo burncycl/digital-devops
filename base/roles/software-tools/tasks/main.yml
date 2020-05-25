@@ -1,0 +1,93 @@
+---
+
+# Tools
+- name: Install Useful Tools 
+  tags: tools
+  apt:
+    name: '{{ packages }}'
+    state: latest
+    update_cache: yes
+  vars:
+   packages:
+    - git 
+    - virtualenv 
+    - lynx
+    - wget
+    - curl
+    - traceroute
+    - jq
+    - screen 
+    - nmap
+    - unzip 
+    - ntpdate 
+    - wipe 
+    - sshfs 
+
+# Python       
+- name: Install Python3
+  tags: tools
+  apt:
+    name: '{{ packages }}'
+    state: latest
+  vars:
+   packages:
+    - python3
+    - python3-pip
+      
+- name: Install Python3/pip3 dependencies
+  tags: tools
+  pip:
+    name: "{{ packages }}"
+    state: latest
+    executable: pip3
+  vars:
+   packages:
+    - pywinrm
+    - requests
+    - pytz
+    - j2cli[yaml]
+    - awscli 
+
+# Docker 
+- name: Install Docker
+  tags: tools
+  apt:
+    name: docker.io
+    state: latest
+    update_cache: yes
+
+- name: Set "{{ user }}" as member of docker group
+  tags: tools, users
+  user:
+    name: "{{ user }}"
+    groups:
+      - docker
+
+# Terraform 
+- name: Fetch Terraform
+  tags: tools
+  get_url:
+      url: '{{ terraform_download_url }}/{{ terraform_version }}/terraform_{{ terraform_version }}_{{ arch }}.zip'
+      dest: '{{ tmp_dir }}'
+
+- name: Install Terraform from archive
+  tags: tools
+  unarchive:
+    src: '{{ tmp_dir }}/terraform_{{ terraform_version }}_{{ arch }}.zip'
+    dest: '{{ usr_bin }}'
+    mode: 0755
+
+# Packer    
+- name: Fetch Packer
+  tags: tools
+  get_url:
+      url: '{{ packer_download_url }}/{{ packer_version }}/packer_{{ packer_version }}_{{ arch }}.zip'
+      dest: '{{ tmp_dir }}'
+
+- name: Install Packer from archive
+  tags: tools
+  unarchive:
+    src: '{{ tmp_dir }}/packer_{{ packer_version }}_{{ arch }}.zip'
+    dest: '{{ usr_bin }}'
+    mode: 0755
+      

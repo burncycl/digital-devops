@@ -1,0 +1,30 @@
+---
+user: burncycl 
+
+tmp_dir: /tmp
+usr_sbin: /usr/sbin
+usr_bin: /usr/bin
+
+# AWS cloud credentials # Dependency on input AWS secrets in secrets.yml
+aws_creds_dir: /home/{{user}}/.aws
+default_aws_output: json
+default_aws_region: us-west-2
+
+# GCP Cloud credentials # Dependency on input AWS secrets in secrets.yml
+gcloud_config_dir: /home/{{user}}/.config
+gcloud_config_default_filepath: '{{ gcloud_config_dir}}/gcloud/configurations/config_default'
+gcloud_dir: '{{ gcloud_config_dir }}/gcloud'
+gcloud_sdk_install_script_url: https://sdk.cloud.google.com
+gcloud_gpg_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+gcloud_sdk_repo_list_template: google-cloud-sdk.list.j2
+gcloud_sdk_repo_source_list: /etc/apt/sources.list.d/google-cloud-sdk.list
+gcloud_gce_ini_filepath: '{{ gcloud_config_dir }}/gce.ini'
+
+# Terraform & Packer
+terraform_version: 0.12.25 
+packer_version: 1.5.6
+terraform_download_url: https://releases.hashicorp.com/terraform
+packer_download_url: https://releases.hashicorp.com/packer
+arch: linux_amd64
+
+

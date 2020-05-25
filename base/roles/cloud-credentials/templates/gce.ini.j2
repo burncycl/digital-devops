@@ -1,0 +1,13 @@
+[gce]
+gce_service_account_email_address = {{ user }}@webroot-admin.iam.gserviceaccount.com
+gce_service_account_pem_file_path = /home/{{ user }}/.config/gcloud/{{ user }}.json
+gce_project_id = dnsp-dev-0176
+
+[inventory]
+# Use external IP addresses to connect
+inventory_ip_type = external
+
+[cache]
+cache_path = ~/.ansible/tmp
+cache_max_age = 300
+

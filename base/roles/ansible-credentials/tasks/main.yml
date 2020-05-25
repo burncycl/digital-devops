@@ -1,0 +1,19 @@
+---
+
+- name: Create '{{ secrets_dir }}' directory
+  tags: ansible-vault, credentials, secrets
+  file:
+    path: '{{ secrets_dir }}'
+    state: directory
+    owner: '{{ user }}' 
+    group: '{{ user }}' 
+    mode: 0700
+
+- name: Copy '{{ vaultpw_file }}' password file
+  tags: ansible-vault, credentials, secrets
+  copy:
+    content: '{{ vaultpw }}'
+    dest: '{{ secrets_dir }}/{{ vaultpw_file }}'
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: 0600
