@@ -7,6 +7,8 @@ Reference:
 This will provision AWS S3 remote state bucket using best practices. Modified original code (main.tf and variables.tf) to default to us-west-2 for Primary region, and us-east-1 for replica. 
 Also added an alias for easier identification fo the KMS key.
 
+I did not change much. Probably could make this more my style by separating out the polices.
+
 ## Create Bucket
 
 Push button magic with 
