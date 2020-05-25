@@ -1,7 +1,6 @@
 # EKS Worker Nodes Resources
-#  * IAM role allowing Kubernetes actions to access other AWS services
-#  * EKS Node Group to launch worker nodes
 
+#IAM role allowing Kubernetes actions to access other AWS services
 resource "aws_iam_role" "worker-role" {
   name               = "${var.worker-name}-${var.env}-role"
   assume_role_policy = file("./iam-worker-policy.json")
@@ -13,6 +12,7 @@ resource "aws_iam_role_policy_attachment" "worker-policy" {
   policy_arn = element(var.worker_policy_arn, count.index)
 }
 
+# EKS Node Group to launch worker nodes
 resource "aws_eks_node_group" "default" {
   cluster_name    = aws_eks_cluster.default.name
   node_group_name = "${var.worker-name}-${var.env}-ng"
