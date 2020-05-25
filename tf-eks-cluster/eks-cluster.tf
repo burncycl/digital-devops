@@ -1,8 +1,6 @@
 # EKS Cluster Resources
-#  * IAM Role to allow EKS service to manage other AWS services
-#  * EC2 Security Group to allow networking traffic with EKS cluster
-#  * EKS Cluster
 
+# IAM Role to allow EKS service to manage other AWS services
 resource "aws_iam_role" "cluster-role" {
   name               = "${var.cluster-name}-${var.env}-role"
   assume_role_policy = file("./iam-cluster-policy.json")
@@ -14,6 +12,7 @@ resource "aws_iam_role_policy_attachment" "cluster-policy" {
   policy_arn = element(var.cluster_policy_arn, count.index)
 }
 
+# EC2 Security Group to allow networking traffic with EKS cluster
 resource "aws_security_group" "cluster-sg" {
   name        = "${var.cluster-name}-${var.env}-sg"
   description = "Cluster communication with worker nodes"
@@ -41,6 +40,7 @@ resource "aws_security_group_rule" "cluster-worker-ingress" {
   type              = "ingress"
 }
 
+# EKS Cluster
 resource "aws_eks_cluster" "default" {
   name     = var.cluster-name
   role_arn = aws_iam_role.cluster-role.arn
