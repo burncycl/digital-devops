@@ -22,8 +22,6 @@ all:
 	$(error No target specified.)
 
 
-
-
 deploy:
 	$(HELM) upgrade --install $(APP_NAME) --namespace $(NAMESPACE) --create-namespace ./helm/$(APP_NAME)
 
