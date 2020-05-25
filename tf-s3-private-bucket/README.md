@@ -6,8 +6,22 @@ References:
 
 Creates an S3 bucket with encryption at rest enabled utilizing KMS. 
 
+## Create Bucket
+
 Push button magic with 
 ```
 make bucket 
 ```
+
+## Destroy Bucket
+Destroy requires terraform.tfstate
+
+Destroy
+```
+make destroy
+```
+
+Destroy without prompting. Warning: Very impactful!
+```
+make destroy_bucket
 

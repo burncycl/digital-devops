@@ -33,5 +33,5 @@ make destroy
 
 Destroy without prompting. Warning: Very impactful!
 ```
-make destroy_noask
+make destroy_bucket
 ``` 
