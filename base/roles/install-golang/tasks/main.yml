@@ -1,11 +1,48 @@
 ---
 
-- name: Install golang 
+# References: 
+# - https://golang.org/dl/
+# - https://medium.com/better-programming/install-go-1-11-on-ubuntu-18-04-16-04-lts-8c098c503c5f 
+- name: Fetch Golang tarball 
   tags: golang 
-  apt:
-    name: '{{ packages }}'
-    state: latest
-    update_cache: yes
-  vars:
-   packages:
-    - golang-go 
+  get_url:
+      url: '{{ golang_tarball_url }}'
+      dest: '{{ tmp_dir }}/{{ golang_tarball }}'
+      mode: 0755
+
+- name: Unarchive Golang Tarball
+  tags: golang 
+  unarchive:
+    src: '{{ tmp_dir }}/{{ golang_tarball }}'
+    dest: '{{ tmp_dir }}'
+
+- name: Stat '{{ usr_local }}/go'
+  tags: golang
+  stat:
+    path: '{{ usr_local }}/go }}'
+  register: go_path
+
+- name: Move '{{ tmp_dir }}/go' to '{{ usr_local }}/go'
+  tags: golang
+  command: 'mv {{ tmp_dir }}/go {{ usr_local }}/go'
+  when: go_path.stat.exists == False
+
+- name: Read ~/.bashrc
+  tags: golang 
+  shell: 'cat /home/{{ user }}/.bashrc'
+  register: bashrc
+
+- name: Add golang exports 
+  tags: golang 
+  shell: |
+      echo "export GOROOT=/usr/local/go" >> /home/{{ user }}/.bashrc
+      echo "export GOPATH=$HOME/go" >> /home/{{ user }}/.bashrc
+      echo "export PATH=$GOPATH/bin:$GOROOT/bin:$PATH" >> /home/{{ user }}/.bashrc
+  when: bashrc.stdout.find('GOPATH') == -1
+
+- name: Message to user 
+  tags: golang
+  debug:
+    msg:
+      - 'Either log out and back in to source ~/.bashrc' 
+      - 'Or source ~/.bashrc'

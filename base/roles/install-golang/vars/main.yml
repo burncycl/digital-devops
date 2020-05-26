@@ -1,0 +1,10 @@
+---
+
+tmp_dir: /tmp
+usr_local: /usr/local
+
+# Reference: https://golang.org/dl/
+golang_version: 1.14.3
+golang_arch: linux-amd64
+golang_tarball: 'go{{ golang_version }}.{{ golang_arch }}.tar.gz'
+golang_tarball_url: https://dl.google.com/go/{{ golang_tarball }}
