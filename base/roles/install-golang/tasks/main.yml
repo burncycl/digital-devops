@@ -20,12 +20,12 @@
   tags: golang
   stat:
     path: '{{ usr_local }}/go }}'
-  register: go_path
+  register: go_dir
 
 - name: Move '{{ tmp_dir }}/go' to '{{ usr_local }}/go'
   tags: golang
   command: 'mv {{ tmp_dir }}/go {{ usr_local }}/go'
-  when: go_path.stat.exists == False
+  when: (go_dir.stat.exists and go_dir.stat.isdir == false)
 
 - name: Read ~/.bashrc
   tags: golang 
@@ -37,7 +37,7 @@
   shell: |
       echo "export GOROOT=/usr/local/go" >> /home/{{ user }}/.bashrc
       echo "export GOPATH=$HOME/go" >> /home/{{ user }}/.bashrc
-      echo "export PATH=$GOPATH/bin:$GOROOT/bin:$PATH" >> /home/{{ user }}/.bashrc
+      echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:$PATH" >> /home/{{ user }}/.bashrc
   when: bashrc.stdout.find('GOPATH') == -1
 
 - name: Message to user 
