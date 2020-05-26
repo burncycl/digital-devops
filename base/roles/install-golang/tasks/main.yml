@@ -1,0 +1,11 @@
+---
+
+- name: Install golang 
+  tags: golang 
+  apt:
+    name: '{{ packages }}'
+    state: latest
+    update_cache: yes
+  vars:
+   packages:
+    - golang-go 

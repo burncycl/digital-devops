@@ -10,3 +10,4 @@
    - cloud-credentials 
    - install-kubectl 
    - install-helm
+   - install-golang

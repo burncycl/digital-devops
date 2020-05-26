@@ -192,3 +192,9 @@ Push button magic with
 cd ./tf-ecr-repo && make repo 
 ```
 
+## Deploy Flask Application using Helm to EKS cluster ([./flask-app](./flask-app))
+Push button magic with
+```
+cd ./flask-app && make deploy 
+```
+
