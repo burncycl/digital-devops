@@ -34,9 +34,6 @@ class TestBucket:
         self.pass_count = 0
         self.fail_count = 0              
         
-        # Run tests
-        self.get_permissions()
-        self.get_encryption()
 
         
 
@@ -81,7 +78,12 @@ class TestBucket:
             sys.exit(1)
         
 
-    def test_results(self):
+    def test(self):
+        # Run tests
+        self.get_permissions()
+        self.get_encryption()
+        
+        # Print results 
         print('Passed: {}, Failed: {}, Total: {}'.format(self.pass_count, self.fail_count, self.total_count))        
         if self.fail_count > 0:
             print('TEST FAILURES DETECTED for: {}'.format(self.bucket_name))
@@ -90,4 +92,4 @@ class TestBucket:
             sys.exit(0)
 
 
-TestBucket().test_results() 
+TestBucket().test() 
