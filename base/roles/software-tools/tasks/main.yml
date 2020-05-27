@@ -25,7 +25,7 @@
 
 # Python       
 - name: Install Python3
-  tags: tools
+  tags: tools, python
   apt:
     name: '{{ packages }}'
     state: latest
@@ -35,7 +35,7 @@
     - python3-pip
       
 - name: Install Python3/pip3 dependencies
-  tags: tools
+  tags: tools, python
   pip:
     name: "{{ packages }}"
     state: latest
@@ -47,17 +47,18 @@
     - pytz
     - j2cli[yaml]
     - awscli 
+    - boto3 
 
 # Docker 
 - name: Install Docker
-  tags: tools
+  tags: tools, docker
   apt:
     name: docker.io
     state: latest
     update_cache: yes
 
 - name: Set "{{ user }}" as member of docker group
-  tags: tools, users
+  tags: tools, docker, users
   user:
     name: "{{ user }}"
     groups:
@@ -65,13 +66,13 @@
 
 # Terraform 
 - name: Fetch Terraform
-  tags: tools
+  tags: tools, terraform
   get_url:
       url: '{{ terraform_download_url }}/{{ terraform_version }}/terraform_{{ terraform_version }}_{{ arch }}.zip'
       dest: '{{ tmp_dir }}'
 
 - name: Install Terraform from archive
-  tags: tools
+  tags: tools, terraform
   unarchive:
     src: '{{ tmp_dir }}/terraform_{{ terraform_version }}_{{ arch }}.zip'
     dest: '{{ usr_bin }}'
@@ -79,13 +80,13 @@
 
 # Packer    
 - name: Fetch Packer
-  tags: tools
+  tags: tools, packer
   get_url:
       url: '{{ packer_download_url }}/{{ packer_version }}/packer_{{ packer_version }}_{{ arch }}.zip'
       dest: '{{ tmp_dir }}'
 
 - name: Install Packer from archive
-  tags: tools
+  tags: tools, packer
   unarchive:
     src: '{{ tmp_dir }}/packer_{{ packer_version }}_{{ arch }}.zip'
     dest: '{{ usr_bin }}'

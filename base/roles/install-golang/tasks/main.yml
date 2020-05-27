@@ -36,7 +36,7 @@
   tags: golang 
   shell: |
       echo "export GOROOT=/usr/local/go" >> /home/{{ user }}/.bashrc
-      echo "export GOPATH=$HOME/go" >> /home/{{ user }}/.bashrc
+      echo "export GOPATH=/home/{{ user }}/go" >> /home/{{ user }}/.bashrc
       echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:$PATH" >> /home/{{ user }}/.bashrc
   when: bashrc.stdout.find('GOPATH') == -1
 
@@ -46,3 +46,12 @@
     msg:
       - 'Either log out and back in to source ~/.bashrc' 
       - 'Or source ~/.bashrc'
+
+- name: Create '/home/{{ user }}/go' directory
+  tags: golang
+  file:
+    path: '/home/{{ user }}/go' 
+    owner: '{{ user }}'
+    group: '{{ user }}'
+    mode: 0755
+    state: directory
