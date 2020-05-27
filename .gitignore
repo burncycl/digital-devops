@@ -33,3 +33,4 @@ override.tf.json
 # example: *tfplan*
 
 *configmap.yml
+*venv*
