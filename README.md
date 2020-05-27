@@ -174,9 +174,11 @@ At this point, Remove the `AdministratorAccess` permission from the `automation`
 
 ## Deploy S3 bucket with non-public permissions ([./tf-s3-private-bucket](./tf-s3-private-bucket))
 
+Includes automated tests to verify bucket permissions and encryption.
+
 Push button magic with
 ```
-cd ./tf-s3-private-bucket && make bucket
+cd ./tf-s3-private-bucket && make bucket test
 ```
 
 ## Deploy EKS Cluster ([./tf-eks-cluster](./tf-eks-cluster))
